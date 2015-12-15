@@ -1,4 +1,4 @@
-﻿// Lab 15
+// Lab 15
 // Programmer: Dhanush Patel
 // Editor(s) used: Eclipse
 // Compiler(s) used: Eclipse
@@ -54,33 +54,29 @@ int main(){
          if(answer=='Y' || answer=='y'){
              string songShow = "";
              do{
-        	 continueMusic = true;
-             int index = rand() % 200 + 1;
+        	     continueMusic = true;
+             int index = rand() % nSongs;
              songShow = song[index];
-                 for(int i = 0; i < aLastFive.size(); i++){
+	     recent = false;	
+             int i = 0;
+                 for(i = 0; i < aLastFive.size(); i++){
                      if((aLastFive[i].lastSong).compare(songShow) == 0){
                          recent = true;
                      }
                  }
-                 if(aLastFive.size() > 5){
-                     aLastFive.pop_front();
-                   for(int i = 0; i < aLastFive.size(); i++){
-                       cout << "part of 5 list: " << aLastFive[i].lastSong << endl;
-                      }
-                   }
-             }while(recent);
+            if(recent == false)
+	    {	
             cout << songShow << endl;
             aSong.lastSong = songShow;
+            if(aLastFive.size() == 5){
+               aLastFive.pop_front();
+            }
             aLastFive.push_back(aSong);
-         }
+            }
+         }while(recent);
          else if(answer=='N' || answer=='n'){
              continueMusic = false;
          }
          
 		 }while(continueMusic);
-
-		 if(!continueMusic){
-			 return 0;
-		 }
-
 }
