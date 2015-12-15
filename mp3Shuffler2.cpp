@@ -1,4 +1,4 @@
-// Lab 15
+﻿// Lab 15
 // Programmer: Dhanush Patel
 // Editor(s) used: Eclipse
 // Compiler(s) used: Eclipse
@@ -33,9 +33,11 @@ int main(){
 	 deque<lastFive> aLastFive;
 	 lastFive aSong;
 
-	 bool continueMusic;
+	 bool continueMusic = true;
 	 bool recent = false;
-	 
+	 int index = 0;
+	 string songShow = "";
+
 	 while(fin.good()){
 		   string line;
 		   getline(fin, line);
@@ -45,35 +47,38 @@ int main(){
 	 }
 
 	 fin.close();
+
      char answer;
 		 do{
 		     
          cout << "play a song [Y/N]?: ";
          cin >> answer;
          cin.ignore(1000,10);
+
          if(answer=='Y' || answer=='y'){
-             string songShow = "";
-             do{
-        	     continueMusic = true;
-             int index = rand() % nSongs;
-             songShow = song[index];
-	     recent = false;	
-             int i = 0;
-                 for(i = 0; i < aLastFive.size(); i++){
-                     if((aLastFive[i].lastSong).compare(songShow) == 0){
-                         recent = true;
-                     }
-                 }
-            if(recent == false)
-	    {	
-            cout << songShow << endl;
-            aSong.lastSong = songShow;
-            if(aLastFive.size() == 5){
-               aLastFive.pop_front();
-            }
-            aLastFive.push_back(aSong);
-            }
-         }while(recent);
+			do{
+				 continueMusic = true;
+				 index = rand() % nSongs;
+				 songShow = song[index];
+				 recent = false;
+				 int i = 0;
+					 for(i = 0; i < aLastFive.size(); i++){
+						 if((aLastFive[i].lastSong).compare(songShow) == 0){
+							 recent = true;
+						 }
+					 }
+					if(recent == false)
+					{
+					cout << songShow << endl;
+					aSong.lastSong = songShow;
+						if(aLastFive.size() == 5){
+						   aLastFive.pop_front();
+						}
+					aLastFive.push_back(aSong);
+					}
+			 }while(recent);
+         }
+
          else if(answer=='N' || answer=='n'){
              continueMusic = false;
          }
