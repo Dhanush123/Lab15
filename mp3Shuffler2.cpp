@@ -54,16 +54,23 @@ int main(){
          if(answer=='Y' || answer=='y'){
              string songShow = "";
              do{
+<<<<<<< HEAD
         	     continueMusic = true;
              int index = rand() % nSongs;
              songShow = song[index];
 	     recent = false;	
+=======
+        	 continueMusic = true;
+             int index = rand() % nSongs;
+             songShow = song[index];
+>>>>>>> origin/master
              int i = 0;
                  for(i = 0; i < aLastFive.size(); i++){
                      if((aLastFive[i].lastSong).compare(songShow) == 0){
                          recent = true;
                      }
                  }
+<<<<<<< HEAD
             if(recent == false)
 	    {	
             cout << songShow << endl;
@@ -74,6 +81,22 @@ int main(){
             aLastFive.push_back(aSong);
             }
          }while(recent);
+=======
+                 if(i >= 5)  //if it's not in the aLastFive
+                 {
+                  recent = false;
+                 }
+             }while(recent);
+
+            cout << songShow << endl;
+            aSong.lastSong = songShow;
+
+            if(aLastFive.size() == 5){
+               aLastFive.pop_front();
+            }
+            aLastFive.push_back(aSong);
+         }
+>>>>>>> origin/master
          else if(answer=='N' || answer=='n'){
              continueMusic = false;
          }
