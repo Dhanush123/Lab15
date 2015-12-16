@@ -18,7 +18,6 @@ bool isValidEmailCharacter(char c){
 int main(){
 
     ifstream fin;
-    ofstream fout;
 	cout << "Programmer: Dhanush Patel" << endl;
 	cout << "Description: This program prompts for input and output filenames and prints out all valid non-duplicate emails in the input file." << endl;
 	cout << endl;
@@ -79,8 +78,9 @@ int main(){
 
 			if(nEmails < MAX_EMAILS){
 				bool duplicate = false;
+				string email = line.substr(s,e-s);
 				for(int i = 0; i < nEmails; i++){
-					if(line.compare(name[i]) == 0){
+					if(email.compare(name[i]) == 0){
 						duplicate = true;
 					}
 				}
@@ -94,19 +94,20 @@ int main(){
     fin.close();
 
    if(nEmails!=0){
-    	fout.open(outputFile.c_str());
 		for(int z = 0; z < nEmails; z++){
 		    cout << name[z] << endl;
 		}
-    	while(fin.good()){
+	    ofstream fout;
+    	fout.open(outputFile.c_str());
+    	if(fout.good()){
 			 for(int z = 0; z < nEmails; z++){
 				fout << name[z] + "; ";
 			 }
     	}
+   	    fout.close();
 		cout << nEmails << " addresses were found and copied to the file " << outputFile << endl;
 		cout << "You may now open " << outputFile << " and copy/paste its contents into the to, cc, or bcc fields of any email message." << endl;
-		cout << "Pro tip: it is best to paste email addresses into the bcc field to protect people's privacy by not showing everyone each other's email." << endl;
-    	 fout.close();
+		cout << "Pro tip: It is best to paste email addresses into the bcc field to protect people's privacy by not showing everyone each other's email." << endl;
     }
     else{
     	cout << "Sorry, no email addresses were found in the file " << inputFile << endl;
